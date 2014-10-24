@@ -1,0 +1,16 @@
+// sweetalert
+script(src='js/bower_components/sweetalert/lib/sweet-alert.min.js')
+link(rel='stylesheet' href='js/bower_components/sweetalert/lib/sweet-alert.css')
+
+// contact success/failure notification
+script(src='js/contact_notification.js')
+
+// form
+form(method='post', action='../send_email/send_email.php')
+  label Name:
+  input(name='name' required)
+  label Email:
+  input(name='email', type='email' required)
+  label Mensagem:
+  textarea(name='message' required)
+  button Send

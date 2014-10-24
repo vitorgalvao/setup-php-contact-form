@@ -1,0 +1,17 @@
+<!-- sweetalert-->
+<script src="js/bower_components/sweetalert/lib/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="js/bower_components/sweetalert/lib/sweet-alert.css"/>
+
+<!-- contact success/failure notification-->
+<script src="js/contact_notification.js"></script>
+
+<!-- form-->
+<form method="post" action="../send_email/send_email.php">
+  <label>Name:</label>
+  <input name="name" required="required"/>
+  <label>Email:</label>
+  <input name="email" type="email" required="required"/>
+  <label>Mensagem:</label>
+  <textarea name="message" required="required"></textarea>
+  <button>Send</button>
+</form>

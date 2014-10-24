@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# check for existence of dependencies
+dependsOn() {
+  if [[ ! $(which "${1}") ]]; then
+    echo -e >&2 "\n$(tput setaf 1)This script requires ${1}. Please install it first.$(tput sgr0)\n"
+    exit 1
+  fi
+}
+
+dependsOn 'bower'
+
+# check if all options are correctly set
+usage() {
+  echo "
+    usage: $0 <email_via> <template_type> [<project_directory>]
+
+    <email_via> must be either 'server' (to send emails from server script is on) or 'gmail' to route via gmail
+    <template_type> must be either 'html' or 'jade'
+    <project_directory>, if empty, will default to current directory
+  " | sed -E 's/^ {4}//'
+}
+
+if [[ "$1" =~ (server|gmail) ]] && [[ "$2" =~ (html|jade) ]]; then
+  email_via="$1"
+  template_type="$2"
+else
+  usage
+  exit 2
+fi
+
+[[ -z "$3" ]] && root_directory="$(pwd)"
+
+# start getting what we need
+if [[ -d "${root_directory}" ]]; then
+  cd "${root_directory}"
+else
+  echo "Chosen directory does not exist"
+  exit 3
+fi
+
+# get PHPMailer
+mkdir -p "send_email"
+git clone "https://github.com/PHPMailer/PHPMailer.git" "send_email/PHPMailer"
+
+# get sweetalert
+mkdir -p "js"
+cd "js"
+bower install sweetalert
+cd "${root_directory}"
+
+# get email script
+if [[ "${email_via}" == "server" ]]; then
+  curl --silent "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/send_from_server.php" --output "send_email/send_email.php"
+else
+  curl --silent "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/send_from_gmail.php" --output "send_email/send_email.php"
+fi
+
+# get template
+if [[ "${template_type}" == "html" ]]; then
+  curl --silent "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/example_contact_form.html" | pbcopy
+else
+  curl --silent "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/example_contact_form.jade" | pbcopy
+fi
+
+# get notification script
+curl --silent "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/contact_notification.js" --output "js/contact_notification.js"
+
+echo "Library to output notifications is in /js/bower_components and script to output the notification ('contact_notification.js') in /js/"
+echo "PHPMailer (and related scripts) are in /send_email/"
+echo "Template code (with example form and links to necessary scripts) was copied to your clipboard"
+echo "You'll need to edit /send_email/send_email.php to complete the appropriate options"

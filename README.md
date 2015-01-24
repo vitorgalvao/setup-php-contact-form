@@ -23,9 +23,12 @@ curl -L "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/ma
 
 # make it executable
 chmod +x "/usr/local/bin/setup-php-contact-form"
+```
 
-# run it
-/usr/local/bin/setup-php-contact-form server jade ./relative/path/to/project
+To run it, you’d do something like
+
+```bash
+setup-php-contact-form server jade ./relative/path/to/project
 ```
 
 ### Options

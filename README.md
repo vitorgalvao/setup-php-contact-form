@@ -8,6 +8,14 @@ To use it, you need only run `setup-php-contact-form` with a few [options](#opti
 
 ### Install and run
 
+If you use [homebrew](http://brew.sh/), you can install it easily with
+
+```bash
+brew install vitorgalvao/tinyscripts/setup-php-contact-form
+```
+
+If you prefer to do it manually, you can do so by
+
 ```bash
 # get the script in /usr/local/bin
 mkdir -p "/usr/local/bin"

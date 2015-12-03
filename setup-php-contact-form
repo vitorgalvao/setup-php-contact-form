@@ -15,13 +15,13 @@ usage() {
   echo "
     usage: $0 <email_via> <template_type> [<project_directory>]
 
-    <email_via> must be either 'server' (to send emails from server script is on) or 'gmail' to route via gmail
+    <email_via> must be either 'server' (to send emails from server script is on) or 'smtp' to use an SMTP server
     <template_type> must be either 'html' or 'jade'
     <project_directory>, if empty, will default to current directory
   " | sed -E 's/^ {4}//'
 }
 
-if [[ "$1" =~ (server|gmail) ]] && [[ "$2" =~ (html|jade) ]]; then
+if [[ "$1" =~ (server|smtp) ]] && [[ "$2" =~ (html|jade) ]]; then
   email_via="$1"
   template_type="$2"
 else
@@ -53,7 +53,7 @@ cd "${root_directory}"
 if [[ "${email_via}" == "server" ]]; then
   curl --silent "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/send_from_server.php" --output "send_email/send_email.php"
 else
-  curl --silent "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/send_from_gmail.php" --output "send_email/send_email.php"
+  curl --silent "https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/send_from_smtp.php" --output "send_email/send_email.php"
 fi
 
 # get template

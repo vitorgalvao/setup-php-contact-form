@@ -14,7 +14,7 @@ $body = '<content_of_the_email>';
 
 // PHPMailer
 require 'PHPMailer/PHPMailerAutoload.php';
-$mail = new PHPMailer();
+$mail = new PHPMailer(true);
 $mail->CharSet = 'UTF-8';
 $mail->IsHTML(false);
 $mail->SetFrom("$email", "$name");

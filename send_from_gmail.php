@@ -32,7 +32,6 @@ $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'ssl';
 $mail->Host = 'smtp.gmail.com';
 $mail->Port = 465;
-$mail->SMTPDebug = false;
 $mail->Username = "$gmail_email";
 $mail->Password = "$gmail_password";
 $mail->AddReplyTo("$email", "$name");

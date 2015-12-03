@@ -38,7 +38,7 @@ Options must be given in order. The first two are mandatory, while the third one
 ```
 usage: setup-php-contact-form <email_via> <template_type> [<project_directory>]
 
-<email_via> must be either 'server' (to send emails from server script is on) or 'gmail' to route via gmail
+<email_via> must be either 'server' (to send emails from server script is on) or 'smtp' to use an SMTP server
 <template_type> must be either 'html' or 'jade'
 <project_directory>, if empty, will default to current directory
 ```

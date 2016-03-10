@@ -19,7 +19,7 @@ If you prefer to do it manually, you can do so by
 ```bash
 # get the script in /usr/local/bin
 mkdir -p '/usr/local/bin'
-curl -L 'https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/setup-php-contact-form' -o '/usr/local/bin/setup-php-contact-form'
+curl --location 'https://raw.githubusercontent.com/vitorgalvao/setup-php-contact-form/master/setup-php-contact-form' --output '/usr/local/bin/setup-php-contact-form'
 
 # make it executable
 chmod +x '/usr/local/bin/setup-php-contact-form'

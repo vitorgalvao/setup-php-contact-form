@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
 
   function getQueryVariable(variable) {
     var query = window.location.search.substring(1);

@@ -33,7 +33,7 @@ fi
 
 # start getting what we need
 if [[ -d "${root_directory}" ]]; then
-  cd "${root_directory}"
+  cd "${root_directory}" || exit 1
 else
   echo "Chosen directory does not exist"
   exit 3
@@ -45,9 +45,9 @@ git clone "https://github.com/PHPMailer/PHPMailer.git" "send_email/PHPMailer"
 
 # get sweetalert
 mkdir -p "js"
-cd "js"
+cd "js" || exit 1
 bower install sweetalert
-cd "${root_directory}"
+cd "${root_directory}" || exit 1
 
 # get email script
 if [[ "${email_via}" == "server" ]]; then
